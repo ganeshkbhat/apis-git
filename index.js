@@ -8,6 +8,9 @@
  * npmjs Link: https://www.npmjs.com/package/git-apis
  * File: index.js
  * File Description: Main index file for for git-apis with all package functions
+ * https://docs.github.com/en/rest/repos/contents#get-repository-content
+ * https://docs.gitlab.com/ee/api/repository_files.html
+ * https://developer.atlassian.com/cloud/bitbucket/rest/
  * 
 */
 
