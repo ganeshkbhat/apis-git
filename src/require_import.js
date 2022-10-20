@@ -6,7 +6,7 @@
  * Install: npm i git-apis --save
  * Github: https://github.com/ganeshkbhat/git-apis
  * npmjs Link: https://www.npmjs.com/package/git-apis
- * File: put.js
+ * File: require_imports.js
  * File Description: Main index file for for git-apis with all package functions
  * 
 */
@@ -15,16 +15,15 @@
 
 'use strict';
 
-const _getRequireOrImport = require("./require_import");
-const _request = _getRequireOrImport("./request.js");
-
 /**
  *
  *
- * @param {*} options
- * @param {*} data
+ * @param {*} module_name
  * @return {*} 
  */
-function _putRequest(options, data, protocol) {
-    
+module.exports = function _getRequireOrImport(module_name) {
+    if (process.versions.node.split('.')[0] > "14") {
+        return import(module_name);
+    }
+    return require(module_name);
 }
