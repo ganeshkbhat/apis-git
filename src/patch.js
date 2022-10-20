@@ -26,5 +26,5 @@ const _request = _getRequireOrImport("./request.js");
  * @return {*} 
  */
 function _patchRequest(options, data, protocol) {
-    
+
 }

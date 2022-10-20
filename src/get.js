@@ -24,7 +24,7 @@ const _getRequireOrImport = require("./require_import");
  * @param {*} data
  * @return {*} 
  */
- function _getRequest(options, data, protocol) {
+function _getRequest(options, data, protocol) {
     return new Promise((resolve, reject) => {
         const { get } = (protocol === "https") ? _getRequireOrImport("https") : _getRequireOrImport("http");
         let req = get(options, (res) => {

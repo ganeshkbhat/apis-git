@@ -25,6 +25,6 @@ const _request = _getRequireOrImport("./request.js");
  * @param {*} data
  * @return {*} 
  */
- function _deleteRequest(options, data, protocol) {
-    
+function _deleteRequest(options, data, protocol) {
+
 }
