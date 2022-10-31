@@ -15,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ganeshkbhat/remote-git-apis.git"
+    "url": "git+https://github.com/ganeshkbhat/apis-git.git"
   },
   "bugs": {
-    "url": "https://github.com/ganeshkbhat/remote-git-apis/issues"
+    "url": "https://github.com/ganeshkbhat/apis-git/issues"
   },
-  "homepage": "https://github.com/ganeshkbhat/remote-git-apis#readme",
+  "homepage": "https://github.com/ganeshkbhat/apis-git#readme",
   "dependencies": {},
   "devDependencies": {
     "chai": "^4.3.6",
