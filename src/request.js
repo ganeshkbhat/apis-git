@@ -15,7 +15,18 @@
 
 'use strict';
 
-const _getRequireOrImport = require("./require_import");
+/**
+ *
+ *
+ * @param {*} module_name
+ * @return {*} 
+ */
+ module.exports = function _getRequireOrImport(module_name) {
+    if (process.versions.node.split('.')[0] > "14") {
+        return import(module_name);
+    }
+    return require(module_name);
+}
 
 /**
  *
@@ -24,7 +35,69 @@ const _getRequireOrImport = require("./require_import");
  * @param {*} data
  * @return {*} 
  */
-module.exports = function _request(options, data, protocol) {
+ function _deleteRequest(options, data, protocol) {
+
+}
+
+/**
+ *
+ *
+ * @param {*} options
+ * @param {*} data
+ * @return {*} 
+ */
+ function _getRequest(options, data, protocol) {
+    return new Promise((resolve, reject) => {
+        const { get } = (protocol === "https") ? _getRequireOrImport("https") : _getRequireOrImport("http");
+        let req = get(options, (res) => {
+            let result = '';
+            res.on('data', (chunk) => result += chunk);
+            res.on('end', () => resolve(JSON.parse(result)));
+        }).on('error', (err) => reject(err));
+    });
+}
+
+/**
+ *
+ *
+ * @param {*} options
+ * @param {*} data
+ * @return {*} 
+ */
+function _patchRequest(options, data, protocol) {
+
+}
+
+/**
+ *
+ *
+ * @param {*} options
+ * @param {*} data
+ * @return {*} 
+ */
+function _postRequest(options, data, protocol) {
+
+}
+
+/**
+ *
+ *
+ * @param {*} options
+ * @param {*} data
+ * @return {*} 
+ */
+function _putRequest(options, data, protocol) {
+
+}
+
+/**
+ *
+ *
+ * @param {*} options
+ * @param {*} data
+ * @return {*} 
+ */
+function _request(options, data, protocol) {
     return new Promise((resolve, reject) => {
         const { request } = (protocol === "https") ? _getRequireOrImport("https") : _getRequireOrImport("http");
         const querystring = _getRequireOrImport('querystring');
@@ -46,3 +119,10 @@ module.exports = function _request(options, data, protocol) {
         req.end();
     });
 }
+
+module.exports._deleteRequest = _deleteRequest;
+module.exports._getRequest = _getRequest;
+module.exports._postRequest = _postRequest;
+module.exports._putRequest = _putRequest;
+module.exports._patchRequest = _patchRequest;
+module.exports._request = _request;
