@@ -1,6 +1,6 @@
 {
   "name": "git-apis",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "APIs to access and search remote git repositories",
   "main": "index.js",
   "exports": {
