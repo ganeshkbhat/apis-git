@@ -20,7 +20,7 @@
 
 const path = require('path');
 const fs = require('fs');
-const { _getRoot } = require("./getroot.js");
+const { _getRoot } = require("root-dirs");
 
 /** New Structure for Revamped version of index.js with better isolation, and independent functions */
 

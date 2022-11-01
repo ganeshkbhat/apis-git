@@ -19,4 +19,41 @@
 
 'use strict';
 
+const _getRequireOrImport = require("./require_import");
+
+
+const { _getPackageJsonRoot, _searchGit, _findGitRemoteFileUrl, _findGitRemoteRootUrl, _findGitRemotePackageJsonUrl,
+    _searchGitFilesResultsModifier, _getDirContentResultsModifier, _getGitCommitNumber,
+    _getGitSHAHash, _getGitTagName, _getGitBranchName, _getGitURLs
+} = require("./src/git.js");
+
+
+const {
+    _deleteRequest, _getRequest, _postRequest,
+    _putRequest, _patchRequest, _request
+} = require("./src/request.js");
+
+
+// git.js
+module.exports._getPackageJsonRoot = _getPackageJsonRoot;
+module.exports._searchGit = _searchGit;
+module.exports._findGitRemoteFileUrl = _findGitRemoteFileUrl;
+module.exports._findGitRemoteRootUrl = _findGitRemoteRootUrl;
+module.exports._findGitRemotePackageJsonUrl = _findGitRemotePackageJsonUrl;
+module.exports._searchGitFilesResultsModifier = _searchGitFilesResultsModifier;
+module.exports._getDirContentResultsModifier = _getDirContentResultsModifier;
+module.exports._getGitCommitNumber = _getGitCommitNumber;
+module.exports._getGitSHAHash = _getGitSHAHash;
+module.exports._getGitTagName = _getGitTagName;
+module.exports._getGitBranchName = _getGitBranchName;
+module.exports._getGitURLs = _getGitURLs;
+
+
+// request.js
+module.exports._deleteRequest = _deleteRequest;
+module.exports._getRequest = _getRequest;
+module.exports._postRequest = _postRequest;
+module.exports._putRequest = _putRequest;
+module.exports._patchRequest = _patchRequest;
+module.exports._request = _request;
 

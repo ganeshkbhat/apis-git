@@ -14,3 +14,21 @@
 /* eslint no-console: 0 */
 
 'use strict';
+
+import { default as _getGitURLs } from './index.js';
+
+
+import { _getPackageJsonRoot, _searchGit, _findGitRemoteFileUrl, _findGitRemoteRootUrl, _findGitRemotePackageJsonUrl,
+    _searchGitFilesResultsModifier, _getDirContentResultsModifier, _getGitCommitNumber,
+    _getGitSHAHash, _getGitTagName, _getGitBranchName, _getGitURLs, _deleteRequest, _getRequest, _postRequest,
+    _putRequest, _patchRequest, _request
+} from "./index.js";
+
+
+export default _getGitURLs;
+
+export { _getPackageJsonRoot, _searchGit, _findGitRemoteFileUrl, _findGitRemoteRootUrl, _findGitRemotePackageJsonUrl,
+    _searchGitFilesResultsModifier, _getDirContentResultsModifier, _getGitCommitNumber,
+    _getGitSHAHash, _getGitTagName, _getGitBranchName, _getGitURLs, _deleteRequest, _getRequest, _postRequest,
+    _putRequest, _patchRequest, _request
+}

@@ -11,20 +11,27 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --reporter spec --recursive"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ganeshkbhat/apis-git.git"
+    "url": "git+https://github.com/ganeshkbhat/git-apis.git"
   },
   "bugs": {
-    "url": "https://github.com/ganeshkbhat/apis-git/issues"
+    "url": "https://github.com/ganeshkbhat/git-apis/issues"
   },
-  "homepage": "https://github.com/ganeshkbhat/apis-git#readme",
-  "dependencies": {},
+  "homepage": "https://github.com/ganeshkbhat/git-apis#readme",
+  "dependencies": {
+    "root-dirs": "^0.0.2"
+  },
   "devDependencies": {
+    "@types/node": "^18.11.3",
     "chai": "^4.3.6",
+    "hpp": "^0.2.3",
     "mocha": "^10.0.0",
+    "nsp": "^2.8.1",
+    "nsp-api": "^1.0.3",
+    "safe-regex": "^2.1.1",
     "sinon": "^14.0.0",
     "unimported": "^1.22.0"
   },
