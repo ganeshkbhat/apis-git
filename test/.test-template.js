@@ -3,9 +3,9 @@
 //  * Package: 
 //  * Author: Ganesh B
 //  * Description: 
-//  * Install: npm i require-urls --save
-//  * Github: https://github.com/ganeshkbhat/requireurl
-//  * npmjs Link: https://www.npmjs.com/package/require-urls
+//  * Install: npm i git-apis --save
+//  * Github: https://github.com/ganeshkbhat/apis-git
+//  * npmjs Link: https://www.npmjs.com/package/git-apis
 //  * File: test-.js
 //  * Test for File: index.js
 //  * File Description: 
