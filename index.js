@@ -19,8 +19,18 @@
 
 'use strict';
 
-const _getRequireOrImport = require("./require_import");
-
+/**
+ *
+ *
+ * @param {*} module_name
+ * @return {*} 
+ */
+ module.exports._getRequireOrImport = function _getRequireOrImport(module_name) {
+    if (process.versions.node.split('.')[0] > "14") {
+        return import(module_name);
+    }
+    return require(module_name);
+}
 
 const { _getPackageJsonRoot, _searchGit, _findGitRemoteFileUrl, _findGitRemoteRootUrl, _findGitRemotePackageJsonUrl,
     _searchGitFilesResultsModifier, _getDirContentResultsModifier, _getGitCommitNumber,

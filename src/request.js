@@ -21,7 +21,7 @@
  * @param {*} module_name
  * @return {*} 
  */
- module.exports = function _getRequireOrImport(module_name) {
+ module.exports._getRequireOrImport = function _getRequireOrImport(module_name) {
     if (process.versions.node.split('.')[0] > "14") {
         return import(module_name);
     }
