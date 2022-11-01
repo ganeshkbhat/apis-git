@@ -22,6 +22,7 @@ const path = require('path');
 const fs = require('fs');
 const { _getRoot } = require("root-dirs");
 
+
 /** New Structure for Revamped version of index.js with better isolation, and independent functions */
 
 
@@ -281,10 +282,23 @@ function _getGitURLs() {
     }
 }
 
-function _getGitCommitNumber(request, options) { }
+
+function _getGitCommit(request, options) { }
 function _getGitSHAHash(request, options) { }
 function _getGitTagName(request, options) { }
 function _getGitBranchName(request, options) { }
+function _getGitContentFile(request, options) { }
+function _getGitContentDir(request, options) { }
+function _getGitContentDirRecursive(request, options) { }
+function _getGitTree(request, options) { }
+function _getGitTreeRecursive(request, options) { }
+function _getGitRepositories(request, options) { }
+function _getGitIssues(request, options) { }
+function _getGitLabels(request, options) { }
+function _getGitTopics(request, options) { }
+function _getGitUsers(request, options) { }
+function _getGitUserRepositories(request, options) { }
+function _getGitRepository(request, options) { }
 
 
 module.exports._getPackageJsonRoot = _getPackageJsonRoot;
@@ -294,8 +308,22 @@ module.exports._findGitRemoteRootUrl = _findGitRemoteRootUrl;
 module.exports._findGitRemotePackageJsonUrl = _findGitRemotePackageJsonUrl;
 module.exports._searchGitFilesResultsModifier = _searchGitFilesResultsModifier;
 module.exports._getDirContentResultsModifier = _getDirContentResultsModifier;
-module.exports._getGitCommitNumber = _getGitCommitNumber;
+module.exports._getGitURLs = _getGitURLs;
+module.exports._getGitCommit = _getGitCommit;
 module.exports._getGitSHAHash = _getGitSHAHash;
 module.exports._getGitTagName = _getGitTagName;
 module.exports._getGitBranchName = _getGitBranchName;
-module.exports._getGitURLs = _getGitURLs;
+module.exports._getGitContentFile = _getGitContentFile;
+module.exports._getGitContentDir = _getGitContentDir;
+module.exports._getGitContentDirRecursive = _getGitContentDirRecursive;
+module.exports._getGitTree = _getGitTree;
+module.exports._getGitTreeRecursive = _getGitTreeRecursive;
+module.exports._getGitRepositories = _getGitRepositories;
+module.exports._getGitIssues = _getGitIssues;
+module.exports._getGitLabels = _getGitLabels;
+module.exports._getGitTopics = _getGitTopics;
+module.exports._getGitUsers = _getGitUsers;
+module.exports._getGitUserRepositories = _getGitUserRepositories;
+module.exports._getGitRepository = _getGitRepository;
+
+

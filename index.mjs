@@ -18,17 +18,23 @@
 import { default as _getGitURLs } from './index.js';
 
 
-import { _getPackageJsonRoot, _searchGit, _findGitRemoteFileUrl, _findGitRemoteRootUrl, _findGitRemotePackageJsonUrl,
-    _searchGitFilesResultsModifier, _getDirContentResultsModifier, _getGitCommitNumber,
-    _getGitSHAHash, _getGitTagName, _getGitBranchName, _getGitURLs, _deleteRequest, _getRequest, _postRequest,
+import {
+    _getPackageJsonRoot, _searchGit, _findGitRemoteFileUrl, _findGitRemoteRootUrl, _findGitRemotePackageJsonUrl,
+    _searchGitFilesResultsModifier, _getDirContentResultsModifier, _getGitCommit,
+    _getGitSHAHash, _getGitTagName, _getGitBranchName, _getGitURLs, _getGitContentFile, _getGitContentDir,
+    _getGitContentDirRecursive, _getGitTree, _getGitTreeRecursive, _getGitRepositories, _getGitIssues,
+    _getGitLabels, _getGitTopics, _getGitUsers, _getGitUserRepositories, _getGitRepository, _deleteRequest, _getRequest, _postRequest,
     _putRequest, _patchRequest, _request
 } from "./index.js";
 
 
 export default _getGitURLs;
 
-export { _getPackageJsonRoot, _searchGit, _findGitRemoteFileUrl, _findGitRemoteRootUrl, _findGitRemotePackageJsonUrl,
-    _searchGitFilesResultsModifier, _getDirContentResultsModifier, _getGitCommitNumber,
-    _getGitSHAHash, _getGitTagName, _getGitBranchName, _getGitURLs, _deleteRequest, _getRequest, _postRequest,
+export {
+    _getPackageJsonRoot, _searchGit, _findGitRemoteFileUrl, _findGitRemoteRootUrl, _findGitRemotePackageJsonUrl,
+    _searchGitFilesResultsModifier, _getDirContentResultsModifier, _getGitCommit,
+    _getGitSHAHash, _getGitTagName, _getGitBranchName, _getGitURLs, _getGitContentFile, _getGitContentDir,
+    _getGitContentDirRecursive, _getGitTree, _getGitTreeRecursive, _getGitRepositories, _getGitIssues,
+    _getGitLabels, _getGitTopics, _getGitUsers, _getGitUserRepositories, _getGitRepository, _deleteRequest, _getRequest, _postRequest,
     _putRequest, _patchRequest, _request
 }

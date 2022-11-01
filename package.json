@@ -21,11 +21,9 @@
     "url": "https://github.com/ganeshkbhat/git-apis/issues"
   },
   "homepage": "https://github.com/ganeshkbhat/git-apis#readme",
-  "dependencies": {},
   "devDependencies": {
     "@types/node": "^18.11.3",
     "chai": "^4.3.6",
-    "root-dirs": "^0.0.2",
     "concurrency.js": "^0.0.1",
     "fssys": "^1.0.1",
     "get-imported": "^0.0.5",
@@ -34,6 +32,8 @@
     "mocha": "^10.0.0",
     "nsp": "^2.8.1",
     "nsp-api": "^1.0.3",
+    "request-apis": "^0.0.1",
+    "root-dirs": "^0.0.2",
     "safe-regex": "^2.1.1",
     "sinon": "^14.0.0",
     "unimported": "^1.22.0"
