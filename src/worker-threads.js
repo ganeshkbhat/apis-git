@@ -15,7 +15,21 @@
 
 'use strict';
 
-const _getRequireOrImport = require("./require_import");
+
+/**
+ *
+ *
+ * @param {*} module_name
+ * @return {*} 
+ */
+ function _getRequireOrImport(module_name) {
+    if (process.versions.node.split('.')[0] > "14") {
+        return import(module_name);
+    }
+    return require(module_name);
+}
+
+
 const { parentPort } = _getRequireOrImport("worker_threads");
 
 parentPort.on("message", function (contents) {
