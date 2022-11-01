@@ -22,12 +22,12 @@
   },
   "homepage": "https://github.com/ganeshkbhat/git-apis#readme",
   "dependencies": {
-    "request-apis": "^0.0.1"
+    "request-apis": "^0.0.1",
+    "concurrency.js": "^0.0.1"
   },
   "devDependencies": {
     "@types/node": "^18.11.3",
     "chai": "^4.3.6",
-    "concurrency.js": "^0.0.1",
     "fssys": "^1.0.1",
     "get-imported": "^0.0.5",
     "hasher-apis": "^0.0.1",
