@@ -21,12 +21,11 @@
     "url": "https://github.com/ganeshkbhat/git-apis/issues"
   },
   "homepage": "https://github.com/ganeshkbhat/git-apis#readme",
-  "dependencies": {
-    "root-dirs": "^0.0.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^18.11.3",
     "chai": "^4.3.6",
+    "root-dirs": "^0.0.2",
     "concurrency.js": "^0.0.1",
     "fssys": "^1.0.1",
     "get-imported": "^0.0.5",
