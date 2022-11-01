@@ -15,7 +15,13 @@
 
 'use strict';
 
-const { _isValidURL, _getProtocol, _checkHttpsProtocol, _getRequest, _fetch, _deleteRequest, _getRequest, _postRequest, _putRequest, _patchRequest, _request } = require("request-apis");
+const { 
+    _isValidURL, _getProtocol, _checkHttpsProtocol, 
+    _getRequest, _fetch, _deleteRequest, _getRequest, 
+    _postRequest, _putRequest, _patchRequest, 
+    _request 
+} = require("request-apis");
+
 
 // /**
 //  *
