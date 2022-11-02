@@ -101,17 +101,21 @@ function _searchGit(requestOptions, data = null, options) {
     });
 }
 
+
 function _findGitRemoteFileUrl(remoteUrl, searchOptions, options) {
     // Implement _getRoot logic into remote url with concurrency
 }
+
 
 function _findGitRemoteRootUrl(remoteUrl, searchOptions, options) {
     // Implement _getRoot logic into remote url with concurrency
 }
 
+
 function _findGitRemotePackageJsonUrl(remoteUrl, options) {
     // Implement _getRoot logic and find the package.json url into remote package.json url with concurrency
 }
+
 
 /**
  *
@@ -151,6 +155,7 @@ function _searchGitFilesResultsModifier(results, options) {
     }
     return contents;
 }
+
 
 /**
  *
