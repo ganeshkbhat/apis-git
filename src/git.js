@@ -26,17 +26,6 @@ const { _getRoot } = require("root-dirs");
 /** New Structure for Revamped version of index.js with better isolation, and independent functions */
 
 
-function _getPackageJsonRoot(startdirectory, options) {
-    function cb(fullPath, options) {
-        if ((options.baseType === "package.json")) {
-
-        }
-        return path.normalize(fullPath);
-    }
-    options.baseType = "package.json";
-    return _getRoot(startdirectory, { ...options, baseType: options.baseType, getRootCallback: cb });
-}
-
 /**
  *
  *
@@ -207,6 +196,7 @@ function _getDirContentResultsModifier(results, options) {
     return contents;
 }
 
+
 function _getGitURLs() {
     return {
         git: {
@@ -301,7 +291,6 @@ function _getGitUserRepositories(request, options) { }
 function _getGitRepository(request, options) { }
 
 
-module.exports._getPackageJsonRoot = _getPackageJsonRoot;
 module.exports._searchGit = _searchGit;
 module.exports._findGitRemoteFileUrl = _findGitRemoteFileUrl;
 module.exports._findGitRemoteRootUrl = _findGitRemoteRootUrl;
