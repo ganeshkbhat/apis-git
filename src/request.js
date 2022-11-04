@@ -16,8 +16,8 @@
 'use strict';
 
 const { 
-    _isValidURL, _getProtocol, _checkHttpsProtocol, 
-    _getRequest, _fetch, _deleteRequest, _getRequest, 
+    _isValidURL, _getProtocol, _checkHttpsProtocol,
+    _fetch, _deleteRequest, _getRequest, 
     _postRequest, _putRequest, _patchRequest, 
     _request 
 } = require("request-apis");
@@ -144,5 +144,4 @@ module.exports._request = _request;
 module.exports._isValidURL = _isValidURL;
 module.exports._getProtocol = _getProtocol;
 module.exports._checkHttpsProtocol = _checkHttpsProtocol;
-module.exports._getRequest = _getRequest;
 module.exports._fetch = _fetch;
