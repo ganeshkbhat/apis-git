@@ -32,7 +32,7 @@ module.exports._getRequireOrImport = function _getRequireOrImport(module_name) {
     return require(module_name);
 }
 
-const { _getPackageJsonRoot, _searchGit, _findGitRemoteFileUrl, _findGitRemoteRootUrl, _findGitRemotePackageJsonUrl,
+const { _searchGit, _findGitRemoteFileUrl, _findGitRemoteRootUrl, _findGitRemotePackageJsonUrl,
     _searchGitFilesResultsModifier, _getDirContentResultsModifier, _getGitCommit,
     _getGitSHAHash, _getGitTagName, _getGitBranchName, _getGitURLs, _getGitContentFile, _getGitContentDir,
     _getGitContentDirRecursive, _getGitTree, _getGitTreeRecursive, _getGitRepositories, _getGitIssues,
@@ -40,12 +40,12 @@ const { _getPackageJsonRoot, _searchGit, _findGitRemoteFileUrl, _findGitRemoteRo
 } = require("./src/git.js");
 
 
-const { _isValidURL, _getProtocol, _checkHttpsProtocol, _getRequest, _fetch, _deleteRequest, _getRequest, _postRequest, _putRequest, _patchRequest, _request } = require("./src/request.js");
+const { _isValidURL, _getProtocol, _checkHttpsProtocol, _fetch, _deleteRequest, _getRequest, _postRequest, _putRequest, _patchRequest, _request } = require("./src/request.js");
 
 
 // git.js
 
-module.exports._getPackageJsonRoot = _getPackageJsonRoot;
+// module.exports._getPackageJsonRoot = _getPackageJsonRoot;
 module.exports._searchGit = _searchGit;
 module.exports._findGitRemoteFileUrl = _findGitRemoteFileUrl;
 module.exports._findGitRemoteRootUrl = _findGitRemoteRootUrl;
@@ -86,5 +86,4 @@ module.exports._request = _request;
 module.exports._isValidURL = _isValidURL;
 module.exports._getProtocol = _getProtocol;
 module.exports._checkHttpsProtocol = _checkHttpsProtocol;
-module.exports._getRequest = _getRequest;
 module.exports._fetch = _fetch;
