@@ -19,7 +19,11 @@ import { default as _getGitURLs } from './index.js';
 
 
 import {
-    _getPackageJsonRoot, _searchGit, _findGitRemoteFileUrl, _findGitRemoteRootUrl, _findGitRemotePackageJsonUrl,
+    getCommit, getSHAHash, getTagName, getBranchName, getContentFile, getContentDir,
+    getContentDirRecursive, getTree, getTreeRecursive, getRepositories, getRepository, getIssues,
+    getLabels, getTopics, getUsers, getUserRepositories,
+    _getRoot, _getGitRoot,
+    _searchGit, _findGitRemoteFileUrl, _findGitRemoteRootUrl, _findGitRemotePackageJsonUrl,
     _searchGitFilesResultsModifier, _getDirContentResultsModifier, _getGitCommit,
     _getGitSHAHash, _getGitTagName, _getGitBranchName, _getGitURLs, _getGitContentFile, _getGitContentDir,
     _getGitContentDirRecursive, _getGitTree, _getGitTreeRecursive, _getGitRepositories, _getGitIssues,
@@ -31,7 +35,11 @@ import {
 export default _getGitURLs;
 
 export {
-    _getPackageJsonRoot, _searchGit, _findGitRemoteFileUrl, _findGitRemoteRootUrl, _findGitRemotePackageJsonUrl,
+    getCommit, getSHAHash, getTagName, getBranchName, getContentFile, getContentDir,
+    getContentDirRecursive, getTree, getTreeRecursive, getRepositories, getRepository, getIssues,
+    getLabels, getTopics, getUsers, getUserRepositories,
+    _getRoot, _getGitRoot,
+    _searchGit, _findGitRemoteFileUrl, _findGitRemoteRootUrl, _findGitRemotePackageJsonUrl,
     _searchGitFilesResultsModifier, _getDirContentResultsModifier, _getGitCommit,
     _getGitSHAHash, _getGitTagName, _getGitBranchName, _getGitURLs, _getGitContentFile, _getGitContentDir,
     _getGitContentDirRecursive, _getGitTree, _getGitTreeRecursive, _getGitRepositories, _getGitIssues,

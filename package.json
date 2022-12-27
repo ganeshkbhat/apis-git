@@ -11,7 +11,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha --reporter spec --recursive"
+    "test": "mocha --reporter spec --recursive --timeout 60000"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/ganeshkbhat/git-apis#readme",
   "dependencies": {
-    "concurrency.js": "0.0.23-beta",
+    "lodash": "^4.17.21",
     "request-apis": "0.0.23-beta",
     "root-dirs": "0.0.2"
   },

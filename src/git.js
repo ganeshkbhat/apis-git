@@ -20,11 +20,36 @@
 
 const path = require('path');
 const fs = require('fs');
-const { _getRoot } = require("root-dirs");
+
+const { _getRoot, _getGitRoot } = require("root-dirs");
+
+const {
+    _isValidURL, _getProtocol, _checkHttpsProtocol,
+    _fetch, _deleteRequest, _getRequest,
+    _postRequest, _putRequest, _patchRequest,
+    _request
+} = require("request-apis");
+
+const _getter = require("lodash").get;
+const _setter = require("lodash").set;
+const _has = require("lodash").has;
 
 
 /** New Structure for Revamped version of index.js with better isolation, and independent functions */
 
+
+function _createRequestOptions(request, options) {
+    // options = _createRequestOptions(request, options);
+    options = { ...options, ...new URL(request) };
+    options["Accept"] = options["Accept"] || options["accept"] || "application/vnd.github+json";
+    options["Authorization"] = options["Authorization"] || options["authorization"] || undefined;
+    options["headers"] = options.headers || {}
+    options.headers["User-Agent"] = options.headers["User-Agent"] || options.headers["user-agent"] || "[require-urls] - npmjs.com/package/require-urls";
+    // options["key"] = (!!options) ? fs.readFileSync(options.key) : "";
+    // options["cert"] = (!!options) ? fs.readFileSync(options.cert) : "";
+    options = { ...options, method: options.method };
+    return options;
+}
 
 /**
  *
@@ -81,11 +106,12 @@ const { _getRoot } = require("root-dirs");
  * 
  */
 function _searchGit(requestOptions, data = null, options) {
-    requestOptions["Accept"] = requestOptions["Accept"] || requestOptions["accept"] || "application/vnd.github+json";
-    requestOptions["Authorization"] = requestOptions["Authorization"] || requestOptions["authorization"] || undefined;
-    requestOptions.headers["User-Agent"] = requestOptions.headers["User-Agent"] || requestOptions.headers["user-agent"] || "require-urls - npmjs.com/package/require-urls";
-    requestOptions = { ...requestOptions, method: "GET" };
+    options["Accept"] = options["Accept"] || options["accept"] || "application/vnd.github+json";
+    options["Authorization"] = options["Authorization"] || options["authorization"] || undefined;
+    options.headers["User-Agent"] = options.headers["User-Agent"] || options.headers["user-agent"] || "require-urls - npmjs.com/package/require-urls";
+    options = { ...options, method: "GET" };
 
+    // 
     // if (options.baseType === "git") {
     //     throw new Error("[require-urls] index.js: gitlab: Not yet implemented.");
     // } else if (options.baseType === "gitlab") {
@@ -95,8 +121,9 @@ function _searchGit(requestOptions, data = null, options) {
     // } else {
     //     throw new Error("[require-urls] index.js: generic request: Not yet implemented.");
     // }
+    // 
 
-    return _getRequest(requestOptions, data, options.protocol || "https").then(function (result) {
+    return _getRequest(options, data, options.protocol || "https").then(function (result) {
         return result;
     });
 }
@@ -201,9 +228,13 @@ function _getDirContentResultsModifier(results, options) {
     return contents;
 }
 
-
+/**
+ *
+ *
+ * @return {*} 
+ */
 function _getGitURLs() {
-    return {
+    var url = {
         git: {
             github: {
                 docs: "https://docs.github.com/en/rest/search",
@@ -275,25 +306,164 @@ function _getGitURLs() {
             }
         }
     }
+
+    /**
+     *
+     *
+     * @param {*} urlname
+     * @param {*} owner
+     * @param {*} repo
+     * @param {*} branch
+     * @param {*} sha
+     * @param {*} path
+     * @param {*} querystring
+     * @return {*} 
+     */
+    function get(urlname, owner, repo, branch, sha, path, querystring) {
+        let u = _getter(url, urlname)
+            .replace(/\$\{owner\}/g, owner || "")
+            .replace(/\$\{repo\}/g, repo || "")
+            .replace(/\$\{branch\}/g, branch || "")
+            .replace(/\$\{sha\}/g, sha || "")
+            .replace(/\$\{path\}/g, path || "")
+            .replace(/\$\{querystring\}/g, querystring || "");
+        if (!querystring || querystring === "") {
+            u = u.replace("?q=", "")
+        }
+        return u;
+    }
+
+    /**
+     *
+     *
+     * @param {*} urlname
+     * @return {*} 
+     */
+    function has(urlname) {
+        return _has(url, urlname);
+    }
+
+    /**
+     *
+     *
+     * @param {*} urlname
+     * @param {*} value
+     * @return {*} 
+     */
+    function set(urlname, value) {
+        return _setter(url, urlname);
+    }
+
+    return { set, get, has }
+}
+
+/**
+ *
+ *
+ * @param {*} request
+ * @param {string} [options={ owner: "", repo: "", sha: "", path: "", branch: "", querystring: "" }]
+ * @return {*} 
+ */
+function _getGitAction(request, options, repository = { owner: "", repo: "", branch: "", sha: "", path: "", querystring: "" }, action) {
+    let { owner, repo, sha, path, branch, querystring } = repository;
+
+    options = { ..._createRequestOptions(request, options) };
+    return _request(options, options.data, options.protocol || "https").then(function (result) {
+        return result;
+    });
+}
+
+/**
+ *
+ *
+ * @param {*} request
+ * @param {string} [options={ owner: "", repo: "", sha: "", path: "", branch: "", querystring: "" }]
+ * @return {*} 
+ */
+function _setGitAction(request, options, repository = { owner: "", repo: "", branch: "", sha: "", path: "", querystring: "" }, action) {
+    let { owner, repo, sha, path, branch, querystring } = repository;
+
+    options = { ..._createRequestOptions(request, options) };
+    return _request(options, options.data, options.protocol || "https").then(function (result) {
+        return result;
+    });
+}
+
+/**
+ *
+ *
+ * @param {*} request
+ * @param {string} [options={ owner: "", repo: "", sha: "", path: "", branch: "", querystring: "" }]
+ * @return {*} 
+ */
+function _getGitCommit(request, option, repository) {
+    return _getGitAction(request, options, respository, action = "searchCommits");
+}
+
+function _getGitSHAHash(request, option, repository) {
+    return _getGitAction(request, options, respository, action = "searchCommitSha");
+}
+
+function _getGitTagName(request, option, repository) {
+    return _getGitAction(request, options, respository, action = "searchTags");
+}
+
+function _getGitBranchName(request, option, repository) {
+    return _getGitAction(request, options, respository, action = "searchUsers");
+}
+
+function _getGitContentFile(request, option, repository) {
+    return _getGitAction(request, options, respository, action = "searchTags");
+}
+
+function _getGitContentDir(request, option, repository) {
+    return _getGitAction(request, options, respository, action = "searchContents");
+}
+
+function _getGitContentDirRecursive(request, option, repository) {
+    return _getGitAction(request, options, respository, action = "searchContents");
+}
+
+function _getGitTree(request, option, repository) {
+    return _getGitAction(request, options, respository, action = "tree");
+}
+
+function _getGitTreeRecursive(request, option, repository) {
+    return _getGitAction(request, options, respository, action = "treeRecursive");
+}
+
+function _getGitRepositories(request, option, repository) {
+    return _getGitAction(request, options, respository, action = "repo");
+}
+
+function _getGitRepository(request, option, repository) {
+    return _getGitAction(request, options, respository, action = "repo");
+}
+
+function _getGitIssues(request, option, repository) {
+    return _getGitAction(request, options, respository, action = "searchIssues");
+}
+
+function _getGitLabels(request, option, repository) {
+    return _getGitAction(request, options, respository, action = "searchLabels");
+}
+
+function _getGitTopics(request, option, repository) {
+    return _getGitAction(request, options, respository, action = "searchTopics");
+}
+
+function _getGitUsers(request, option, repository) {
+    return _getGitAction(request, options, respository, action = "searchUsers");
+}
+
+function _getGitUserRepositories(request, option, repository) {
+    return _getGitAction(request, options, respository, action = "searchUsers");
 }
 
 
-function _getGitCommit(request, options) { }
-function _getGitSHAHash(request, options) { }
-function _getGitTagName(request, options) { }
-function _getGitBranchName(request, options) { }
-function _getGitContentFile(request, options) { }
-function _getGitContentDir(request, options) { }
-function _getGitContentDirRecursive(request, options) { }
-function _getGitTree(request, options) { }
-function _getGitTreeRecursive(request, options) { }
-function _getGitRepositories(request, options) { }
-function _getGitIssues(request, options) { }
-function _getGitLabels(request, options) { }
-function _getGitTopics(request, options) { }
-function _getGitUsers(request, options) { }
-function _getGitUserRepositories(request, options) { }
-function _getGitRepository(request, options) { }
+module.exports._getRoot = _getRoot;
+module.exports._getGitRoot = _getGitRoot;
+
 
 
 module.exports._searchGit = _searchGit;
@@ -303,6 +473,17 @@ module.exports._findGitRemotePackageJsonUrl = _findGitRemotePackageJsonUrl;
 module.exports._searchGitFilesResultsModifier = _searchGitFilesResultsModifier;
 module.exports._getDirContentResultsModifier = _getDirContentResultsModifier;
 module.exports._getGitURLs = _getGitURLs;
+
+module.exports.searchGit = _searchGit;
+module.exports.findGitRemoteFileUrl = _findGitRemoteFileUrl;
+module.exports.findGitRemoteRootUrl = _findGitRemoteRootUrl;
+module.exports.findGitRemotePackageJsonUrl = _findGitRemotePackageJsonUrl;
+module.exports.searchGitFilesResultsModifier = _searchGitFilesResultsModifier;
+module.exports.getDirContentResultsModifier = _getDirContentResultsModifier;
+module.exports.getGitURLs = _getGitURLs;
+
+
+
 module.exports._getGitCommit = _getGitCommit;
 module.exports._getGitSHAHash = _getGitSHAHash;
 module.exports._getGitTagName = _getGitTagName;
@@ -313,11 +494,82 @@ module.exports._getGitContentDirRecursive = _getGitContentDirRecursive;
 module.exports._getGitTree = _getGitTree;
 module.exports._getGitTreeRecursive = _getGitTreeRecursive;
 module.exports._getGitRepositories = _getGitRepositories;
+module.exports._getGitRepository = _getGitRepository;
 module.exports._getGitIssues = _getGitIssues;
 module.exports._getGitLabels = _getGitLabels;
 module.exports._getGitTopics = _getGitTopics;
 module.exports._getGitUsers = _getGitUsers;
 module.exports._getGitUserRepositories = _getGitUserRepositories;
-module.exports._getGitRepository = _getGitRepository;
 
+module.exports.getCommit = _getGitCommit;
+module.exports.getSHAHash = _getGitSHAHash;
+module.exports.getTagName = _getGitTagName;
+module.exports.getBranchName = _getGitBranchName;
+module.exports.getContentFile = _getGitContentFile;
+module.exports.getContentDir = _getGitContentDir;
+module.exports.getContentDirRecursive = _getGitContentDirRecursive;
+module.exports.getTree = _getGitTree;
+module.exports.getTreeRecursive = _getGitTreeRecursive;
+module.exports.getRepositories = _getGitRepositories;
+module.exports.getRepository = _getGitRepository;
+module.exports.getIssues = _getGitIssues;
+module.exports.getLabels = _getGitLabels;
+module.exports.getTopics = _getGitTopics;
+module.exports.getUsers = _getGitUsers;
+module.exports.getUserRepositories = _getGitUserRepositories;
+
+
+
+// module.exports._setGitCommit = _setGitCommit;
+// module.exports._setGitSHAHash = _setGitSHAHash;
+// module.exports._setGitTagName = _setGitTagName;
+// module.exports._setGitBranchName = _setGitBranchName;
+// module.exports._setGitContentFile = _setGitContentFile;
+// module.exports._setGitContentDir = _setGitContentDir;
+// module.exports._setGitContentDirRecursive = _setGitContentDirRecursive;
+// module.exports._setGitTree = _setGitTree;
+// module.exports._setGitTreeRecursive = _setGitTreeRecursive;
+// module.exports._setGitRepositories = _setGitRepositories;
+// module.exports._setGitRepository = _setGitRepository;
+// module.exports._setGitIssues = _setGitIssues;
+// module.exports._setGitLabels = _setGitLabels;
+// module.exports._setGitTopics = _setGitTopics;
+// module.exports._setGitUsers = _setGitUsers;
+// module.exports._setGitUserRepositories = _setGitUserRepositories;
+
+// module.exports.setCommit = _setGitCommit;
+// module.exports.setSHAHash = _setGitSHAHash;
+// module.exports.setTagName = _setGitTagName;
+// module.exports.setBranchName = _setGitBranchName;
+// module.exports.setContentFile = _setGitContentFile;
+// module.exports.setContentDir = _setGitContentDir;
+// module.exports.setContentDirRecursive = _setGitContentDirRecursive;
+// module.exports.setTree = _setGitTree;
+// module.exports.setTreeRecursive = _setGitTreeRecursive;
+// module.exports.setRepositories = _setGitRepositories;
+// module.exports.setRepository = _setGitRepository;
+// module.exports.setIssues = _setGitIssues;
+// module.exports.setLabels = _setGitLabels;
+// module.exports.setTopics = _setGitTopics;
+// module.exports.setUsers = _setGitUsers;
+// module.exports.setUserRepositories = _setGitUserRepositories;
+
+
+
+// Make requests
+
+module.exports._deleteRequest = _deleteRequest;
+module.exports._getRequest = _getRequest;
+module.exports._postRequest = _postRequest;
+module.exports._putRequest = _putRequest;
+module.exports._patchRequest = _patchRequest;
+module.exports._request = _request;
+
+
+// Make http checks
+
+module.exports._isValidURL = _isValidURL;
+module.exports._getProtocol = _getProtocol;
+module.exports._checkHttpsProtocol = _checkHttpsProtocol;
+module.exports._fetch = _fetch;
 

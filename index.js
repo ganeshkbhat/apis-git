@@ -19,33 +19,26 @@
 
 'use strict';
 
-/**
- *
- *
- * @param {*} module_name
- * @return {*} 
- */
-module.exports._getRequireOrImport = function _getRequireOrImport(module_name) {
-    if (process.versions.node.split('.')[0] > "14") {
-        return import(module_name);
-    }
-    return require(module_name);
-}
-
-const { _searchGit, _findGitRemoteFileUrl, _findGitRemoteRootUrl, _findGitRemotePackageJsonUrl,
+const {
+    getCommit, getSHAHash, getTagName, getBranchName, getContentFile, getContentDir,
+    getContentDirRecursive, getTree, getTreeRecursive, getRepositories, getRepository, getIssues,
+    getLabels, getTopics, getUsers, getUserRepositories,
+    _getRoot, _getGitRoot,
+    _searchGit, _findGitRemoteFileUrl, _findGitRemoteRootUrl, _findGitRemotePackageJsonUrl,
     _searchGitFilesResultsModifier, _getDirContentResultsModifier, _getGitCommit,
     _getGitSHAHash, _getGitTagName, _getGitBranchName, _getGitURLs, _getGitContentFile, _getGitContentDir,
     _getGitContentDirRecursive, _getGitTree, _getGitTreeRecursive, _getGitRepositories, _getGitIssues,
-    _getGitLabels, _getGitTopics, _getGitUsers, _getGitUserRepositories, _getGitRepository
+    _getGitLabels, _getGitTopics, _getGitUsers, _getGitUserRepositories, _getGitRepository,
+    _isValidURL, _getProtocol, _checkHttpsProtocol,
+    _fetch, _deleteRequest, _getRequest, _postRequest, _putRequest, _patchRequest, _request
 } = require("./src/git.js");
 
 
-const { _isValidURL, _getProtocol, _checkHttpsProtocol, _fetch, _deleteRequest, _getRequest, _postRequest, _putRequest, _patchRequest, _request } = require("./src/request.js");
-
+module.exports._getRoot = _getRoot;
+module.exports._getGitRoot = _getGitRoot;
 
 // git.js
 
-// module.exports._getPackageJsonRoot = _getPackageJsonRoot;
 module.exports._searchGit = _searchGit;
 module.exports._findGitRemoteFileUrl = _findGitRemoteFileUrl;
 module.exports._findGitRemoteRootUrl = _findGitRemoteRootUrl;
@@ -87,3 +80,22 @@ module.exports._isValidURL = _isValidURL;
 module.exports._getProtocol = _getProtocol;
 module.exports._checkHttpsProtocol = _checkHttpsProtocol;
 module.exports._fetch = _fetch;
+
+
+module.exports.getCommit = getGitCommit;
+module.exports.getSHAHash = getGitSHAHash;
+module.exports.getTagName = getGitTagName;
+module.exports.getBranchName = getGitBranchName;
+module.exports.getContentFile = getGitContentFile;
+module.exports.getContentDir = getGitContentDir;
+module.exports.getContentDirRecursive = getGitContentDirRecursive;
+module.exports.getTree = getGitTree;
+module.exports.getTreeRecursive = getGitTreeRecursive;
+module.exports.getRepositories = getGitRepositories;
+module.exports.getRepository = getGitRepository;
+module.exports.getIssues = getGitIssues;
+module.exports.getLabels = getGitLabels;
+module.exports.getTopics = getGitTopics;
+module.exports.getUsers = getGitUsers;
+module.exports.getUserRepositories = getGitUserRepositories;
+
