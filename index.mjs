@@ -7,7 +7,7 @@
  * Github: https://github.com/ganeshkbhat/git-apis
  * npmjs Link: https://www.npmjs.com/package/git-apis
  * File: index.mjs
- * File Description: Main index file for ES Module wrapper for git-apis with all package functions
+ * File Description: Main index file for for git-apis with all package functions
  * 
 */
 
