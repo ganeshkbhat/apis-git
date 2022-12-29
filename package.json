@@ -24,7 +24,7 @@
   "dependencies": {
     "lodash": "^4.17.21",
     "request-apis": "^0.0.23-beta",
-    "root-dirs": "^0.0.2"
+    "root-dirs": "^0.0.3"
   },
   "devDependencies": {
     "@types/node": "^18.11.3",
