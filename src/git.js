@@ -467,7 +467,6 @@ module.exports._getRoot = _getRoot;
 module.exports._getGitRoot = _getGitRoot;
 
 
-
 module.exports._searchGit = _searchGit;
 module.exports._findGitRemoteFileUrl = _findGitRemoteFileUrl;
 module.exports._findGitRemoteRootUrl = _findGitRemoteRootUrl;
@@ -483,7 +482,6 @@ module.exports.findGitRemotePackageJsonUrl = _findGitRemotePackageJsonUrl;
 module.exports.searchGitFilesResultsModifier = _searchGitFilesResultsModifier;
 module.exports.getDirContentResultsModifier = _getDirContentResultsModifier;
 module.exports.getGitURLs = _getGitURLs;
-
 
 
 module.exports._getGitCommit = _getGitCommit;
