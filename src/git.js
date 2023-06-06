@@ -9,8 +9,6 @@
  * File: index.js
  * File Description: Main index file for for git-apis with all package functions
  * https://docs.github.com/en/rest/repos/contents#get-repository-content
- * https://docs.gitlab.com/ee/api/repository_files.html
- * https://developer.atlassian.com/cloud/bitbucket/rest/
  * https://www.softwaretestinghelp.com/github-rest-api-tutorial/#:~:text=Log%20in%20to%20your%20GitHub,and%20click%20on%20Create%20Token.
  * git-rest: https://www.softwaretestinghelp.com/github-rest-api-tutorial/#:~:text=Log%20in%20to%20your%20GitHub,and%20click%20on%20Create%20Token.
  * 
@@ -23,35 +21,19 @@
 const path = require('path');
 const fs = require('fs');
 
-const { _getRoot, _getGitRoot } = require("root-dirs");
+const { _getRoot, _getGitRoot } = require("./core");
 
 const {
     _isValidURL, _getProtocol, _checkHttpsProtocol,
     _fetch, _deleteRequest, _getRequest,
     _postRequest, _putRequest, _patchRequest,
     _request
-} = require("request-apis");
+} = require("./core");
 
-const _getter = require("lodash").get;
-const _setter = require("lodash").set;
-const _has = require("lodash").has;
 
 
 /** New Structure for Revamped version of index.js with better isolation, and independent functions */
 
-
-function _createRequestOptions(request, options) {
-    // options = _createRequestOptions(request, options);
-    options = { ...options, ...new URL(request) };
-    options["Accept"] = options["Accept"] || options["accept"] || "application/vnd.github+json";
-    options["Authorization"] = options["Authorization"] || options["authorization"] || undefined;
-    options["headers"] = options.headers || {}
-    options.headers["User-Agent"] = options.headers["User-Agent"] || options.headers["user-agent"] || "[require-urls] - npmjs.com/package/require-urls";
-    // options["key"] = (!!options) ? fs.readFileSync(options.key) : "";
-    // options["cert"] = (!!options) ? fs.readFileSync(options.cert) : "";
-    options = { ...options, method: options.method };
-    return options;
-}
 
 /**
  *
@@ -463,8 +445,8 @@ function _getGitUserRepositories(request, option, repository) {
 }
 
 
-module.exports._getRoot = _getRoot;
-module.exports._getGitRoot = _getGitRoot;
+module.exports.getRoot = _getRoot;
+module.exports.getGitRoot = _getGitRoot;
 
 
 module.exports._searchGit = _searchGit;
@@ -474,6 +456,7 @@ module.exports._findGitRemotePackageJsonUrl = _findGitRemotePackageJsonUrl;
 module.exports._searchGitFilesResultsModifier = _searchGitFilesResultsModifier;
 module.exports._getDirContentResultsModifier = _getDirContentResultsModifier;
 module.exports._getGitURLs = _getGitURLs;
+
 
 module.exports.searchGit = _searchGit;
 module.exports.findGitRemoteFileUrl = _findGitRemoteFileUrl;
@@ -501,6 +484,7 @@ module.exports._getGitTopics = _getGitTopics;
 module.exports._getGitUsers = _getGitUsers;
 module.exports._getGitUserRepositories = _getGitUserRepositories;
 
+
 module.exports.getCommit = _getGitCommit;
 module.exports.getSHAHash = _getGitSHAHash;
 module.exports.getTagName = _getGitTagName;
@@ -517,59 +501,4 @@ module.exports.getLabels = _getGitLabels;
 module.exports.getTopics = _getGitTopics;
 module.exports.getUsers = _getGitUsers;
 module.exports.getUserRepositories = _getGitUserRepositories;
-
-
-
-// module.exports._setGitCommit = _setGitCommit;
-// module.exports._setGitSHAHash = _setGitSHAHash;
-// module.exports._setGitTagName = _setGitTagName;
-// module.exports._setGitBranchName = _setGitBranchName;
-// module.exports._setGitContentFile = _setGitContentFile;
-// module.exports._setGitContentDir = _setGitContentDir;
-// module.exports._setGitContentDirRecursive = _setGitContentDirRecursive;
-// module.exports._setGitTree = _setGitTree;
-// module.exports._setGitTreeRecursive = _setGitTreeRecursive;
-// module.exports._setGitRepositories = _setGitRepositories;
-// module.exports._setGitRepository = _setGitRepository;
-// module.exports._setGitIssues = _setGitIssues;
-// module.exports._setGitLabels = _setGitLabels;
-// module.exports._setGitTopics = _setGitTopics;
-// module.exports._setGitUsers = _setGitUsers;
-// module.exports._setGitUserRepositories = _setGitUserRepositories;
-
-// module.exports.setCommit = _setGitCommit;
-// module.exports.setSHAHash = _setGitSHAHash;
-// module.exports.setTagName = _setGitTagName;
-// module.exports.setBranchName = _setGitBranchName;
-// module.exports.setContentFile = _setGitContentFile;
-// module.exports.setContentDir = _setGitContentDir;
-// module.exports.setContentDirRecursive = _setGitContentDirRecursive;
-// module.exports.setTree = _setGitTree;
-// module.exports.setTreeRecursive = _setGitTreeRecursive;
-// module.exports.setRepositories = _setGitRepositories;
-// module.exports.setRepository = _setGitRepository;
-// module.exports.setIssues = _setGitIssues;
-// module.exports.setLabels = _setGitLabels;
-// module.exports.setTopics = _setGitTopics;
-// module.exports.setUsers = _setGitUsers;
-// module.exports.setUserRepositories = _setGitUserRepositories;
-
-
-
-// Make requests
-
-module.exports._deleteRequest = _deleteRequest;
-module.exports._getRequest = _getRequest;
-module.exports._postRequest = _postRequest;
-module.exports._putRequest = _putRequest;
-module.exports._patchRequest = _patchRequest;
-module.exports._request = _request;
-
-
-// Make http checks
-
-module.exports._isValidURL = _isValidURL;
-module.exports._getProtocol = _getProtocol;
-module.exports._checkHttpsProtocol = _checkHttpsProtocol;
-module.exports._fetch = _fetch;
 
